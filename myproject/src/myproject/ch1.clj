@@ -1,0 +1,6 @@
+;; Programming Clojure Chapter 1 examples
+;; 11-25-2010
+(ns myproject.ch1)
+
+(defn hello [username]
+  "prints hello, username")
