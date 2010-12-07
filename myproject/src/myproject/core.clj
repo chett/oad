@@ -8,7 +8,16 @@
 (defroutes example-uid
   (GET "/user/:id" [id] (str "<h1> Hello, " id " </h1>")))
 
-
+(defn testfn [x]
+  98)
+(defn testfn2 [x]
+  (* x x))
+(defn testfn3 [x]
+  (* x x))
+(defn testfn4 [x]
+  (* x x x))
+(defn testfn5 [x]
+  (* x x x x x))
 ;; TODO wts
 ;; (defn mkstr [id]
 ;;   str "Mr/Ms" id)

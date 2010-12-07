@@ -5,6 +5,10 @@
 (deftest replace-me ;; FIXME: write
   (= false false "No tests have been written."))
 
+(deftest testfn-test
+  (is (= (testfn 2) 99)))
+
+
 ;(deftest asdf-test
 ;  (= nil (println 'asdf)))
 

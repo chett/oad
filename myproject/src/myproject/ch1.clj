@@ -3,4 +3,10 @@
 (ns myproject.ch1)
 
 (defn hello [username]
-  "prints hello, username")
+  "prints hello, username"
+  (println "hello, " username))
+
+(defn goodbye [username]
+  "prints goodbye, username"
+  (println "goodbye," username))
+	   
