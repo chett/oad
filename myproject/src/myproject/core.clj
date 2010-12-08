@@ -8,18 +8,18 @@
 (defroutes example-uid
   (GET "/user/:id" [id] (str "<h1> Hello, " id " </h1>")))
 
-(defn testfn [x]
-  98)
-(defn testfn2 [x]
-  (* x x))
-(defn testfn3 [x]
-  (* x x))
-(defn testfn4 [x]
-  (* x x x))
-(defn testfn5 [x]
-  (* x x x x x))
-;; TODO wts
-;; (defn mkstr [id]
-;;   str "Mr/Ms" id)
-;; (defn addheader [s]
-;;   (str "<h1>" s))
+(defn add-title [id]
+  "prepend Mr/Ms"
+  (str "Mr/Ms " id))
+
+(defn wrap-tag [val tag]
+  "wraps val in html tag"
+  (str (open-tag tag) val (close-tag tag)))
+
+(defn open-tag [tag]
+  "creates opening html tag"
+  (str "<" (.toLowerCase tag) ">"))
+
+(defn close-tag [tag]
+  "creates closing html tag"
+  (str "</" (.toLowerCase tag) ">"))
