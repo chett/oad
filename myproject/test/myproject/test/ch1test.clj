@@ -3,7 +3,14 @@
   (:use [clojure.test]))
 
 (deftest asdf-test
-  (= nil (println 'asdf)))
+  (is (= nil (println 'asdf))))
 
-;(deftest addh1-test []
-;  (= "<h1>1</h1>" (addh1 "1")))
+(deftest goodbye-test
+  (is (=(goodbye "waldo") "goodbye, waldo")))
+;;pg 6
+(deftest vec-comma-test
+  (is ( = [11, 22, 33] [11 22 33])))
+;;pg 7
+(deftest cond-test
+  (is (= false (cond (< 4 3) true
+		     (> 5 3) false))))

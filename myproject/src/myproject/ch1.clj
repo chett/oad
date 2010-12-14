@@ -8,5 +8,5 @@
 
 (defn goodbye [username]
   "prints goodbye, username"
-  (println "goodbye," username))
-	   
+  (str "goodbye, " username))
+	

@@ -12,10 +12,6 @@
   "prepend Mr/Ms"
   (str "Mr/Ms " id))
 
-(defn wrap-tag [val tag]
-  "wraps val in html tag"
-  (str (open-tag tag) val (close-tag tag)))
-
 (defn open-tag [tag]
   "creates opening html tag"
   (str "<" (.toLowerCase tag) ">"))
@@ -23,3 +19,7 @@
 (defn close-tag [tag]
   "creates closing html tag"
   (str "</" (.toLowerCase tag) ">"))
+
+(defn wrap-tag [val tag]
+  "wraps val in html tag"
+  (str (open-tag tag) val (close-tag tag)))
