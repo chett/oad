@@ -1,3 +1,0 @@
-(ns myproject.test.ch1test
-  (:use [myproject.ch1] :reload)
-  (:use [clojure.test]))
