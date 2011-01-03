@@ -25,7 +25,37 @@
 	 (indexable-words "A quick fox jumped over a brown  dog"))))
 
 ;;pg 40
-(deftest greeter-ter
+(deftest greeter-test
   (let [hawaiian-greeter (make-greeter "Aloha")]
     (is (= (hawaiian-greeter "ted")
 	   "Aloha, ted"))))
+
+;; pg 42
+(deftest square-corners-test
+  (is (= [[0 0] [1 0] [1 1] [0 1]]
+	   (square-corners 0 0 1))))
+
+;; destructuring
+(deftest hiya-test
+  (is (= "hiya, t"
+	 (hiya (struct author "c" "t")))))
+
+(deftest ds-test
+  (let [[_ _ z] [1 2 3]
+	a (:first-name (struct author "t" "chet"))]
+    (is (= a "chet"))
+    (is (= _ 2))
+    (is (= z 3))))
+
+;; namespaces
+(deftest ns-test
+  (is (= #'myproject.ch2/author
+	 (resolve 'author))))
+
+(import '(java.io InputStream File))
+(deftest file-sep-test
+  (is (= "/"
+	 File/separator)))
+	
+
+	

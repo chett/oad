@@ -31,3 +31,13 @@
 
 (defn make-greeter [greeting-prefix]
   #(str greeting-prefix ", " %))
+
+(defn square-corners [bottom left size]
+  (let [top (+ bottom size)
+	right (+ left size)]
+    [[bottom left] [top left] [top right] [bottom right]]))
+
+(defstruct author :last-name :first-name)
+
+(defn hiya [{a :first-name}]
+  (str "hiya, " a))
