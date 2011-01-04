@@ -56,6 +56,29 @@
 (deftest file-sep-test
   (is (= "/"
 	 File/separator)))
-	
 
-	
+;; loop
+(deftest loop-test
+  (is (= [0 1 2 3 4]
+	   (loop [result [] i 0 d 5]
+	     (if (= 0 d)
+	       result
+	       (recur (conj result i) (inc i) (dec d)))))))
+
+;; pg 51
+(deftest indexed-test
+  (is (= '([0 8] [1 8] [2 8])
+	 (indexed [8 8 8]))))
+
+;;pg 52
+(deftest index-filter-test
+  (is (= '(0 2 3)
+	 (index-filter #{\a \b} "asbb"))))
+
+;; metadata
+(deftest meta-test
+  (let [stu {:name "stu"}
+	ser-stu (with-meta stu {:serializable true})]
+    (is (= stu ser-stu)
+	(false? (identical? stu ser-stu)))))
+

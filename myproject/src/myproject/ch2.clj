@@ -1,4 +1,4 @@
-;; Programming Clojure Chapter 1 examples
+;; Programming Clojure Chapter 2 examples
 ;; 12-28-2010
 (ns myproject.ch2
   (:use [clojure.contrib.str-utils :only (re-split)]))
@@ -41,3 +41,11 @@
 
 (defn hiya [{a :first-name}]
   (str "hiya, " a))
+
+(defn indexed [coll]
+  (map vector (iterate inc 0) coll))
+
+(defn index-filter [pred coll]
+  (when pred
+    (for [[idx elt] (indexed coll) :when (pred elt)] idx)))
+
