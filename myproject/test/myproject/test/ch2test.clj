@@ -81,4 +81,3 @@
 	ser-stu (with-meta stu {:serializable true})]
     (is (= stu ser-stu)
 	(false? (identical? stu ser-stu)))))
-

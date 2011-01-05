@@ -8,7 +8,9 @@
 
 (defn argfn [z & q]
   (apply str z q))
+
 (def inventors {:Lisp "McCarthy", :Clojure "Hickey"})
+
 (defstruct book :title :author)
 
 (defn hello-arity
@@ -17,8 +19,6 @@
 
 (defn indexable-word? [x]
   (> (count x) 2))
-
-
 
 (defn long-filter []
   (filter indexable-word?
@@ -48,4 +48,3 @@
 (defn index-filter [pred coll]
   (when pred
     (for [[idx elt] (indexed coll) :when (pred elt)] idx)))
-
