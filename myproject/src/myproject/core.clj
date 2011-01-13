@@ -2,24 +2,25 @@
   (:use compojure.core, ring.adapter.jetty)
   (:require [compojure.route :as route]))
 
-(defroutes example
-  (GET "/" [] "<h1>hello, world!</h1>")
-  (route/not-found "Page not found"))
-
-(defroutes example-uid
-  (GET "/user/:id" [id] (str "<h1> Hello, " id " </h1>")))
-
 (def first-names (ref #{}))
 
 (def middle-names (ref #{}))
 
-(def last-name "Tobrey")
+(def last-name "")
 
 (defn contains-name? [n names]
   (some true? (map #(.equalsIgnoreCase % n) names)))
 
+;; (defn get-tbl-rows []
+;;   (str first-names middle-names last-name))
+
 (defn get-tbl-rows []
- (str first-names middle-names last-name))
+  (let [result []]
+    (for [first [@first-names]]
+      (for [middle [conj @first-names @middle-names]]
+	(do (println first middle)
+	(set result (cons (wrap-tag (str first middle last-name) "tr") result)))))
+    result))
 
 (defn make-three-part-names []
   (str "<tr><th>first</th><th>middle</th><th>last</th></tr>"
@@ -32,7 +33,7 @@
   (GET "/add/first/:name" [name]
        (do
 	 (if (not (contains-name? name @first-names)) (dosync(alter first-names conj (str name))))
-	 (str "<h1>added first-name" name "</h1>")))
+	 (str "<h1>added first-name " name "</h1>")))
   (GET "/remove/first/:name" [name]
        (do
 	 (dosync(ref-set first-names (remove #(.equalsIgnoreCase name %) @first-names)))
@@ -45,15 +46,15 @@
        (do
 	 (dosync(ref-set middle-names (remove #(.equalsIgnoreCase name %) @middle-names)))
 	 (str "<h1>removed middle-name" name "</h1>")))
+  (GET "/set/last/:name" [name]
+       (do
+	 (dosync (ref-set last-name (str name)
+	 (str "<h1>added middle-name" name "</h1>")))
   (GET "/show/" []
        (str "<h1>names</h1>"
 	    (make-name-table)))
   (ANY "*" []
        "page-not-found"))
-
-(defn add-title [id]
-  "prepend Mr/Ms"
-  (str "Mr/Ms " id))
 
 (defn open-tag [tag]
   "creates opening html tag"
@@ -67,4 +68,4 @@
   "wraps val in html tag"
   (str (open-tag tag) val (close-tag tag)))
 
-;(run-jetty my-name-app {:port 8080})
+(run-jetty my-name-app {:port 8080})
