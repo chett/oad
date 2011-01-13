@@ -48,7 +48,7 @@
 	 (str "<h1>removed middle-name" name "</h1>")))
   (GET "/set/last/:name" [name]
        (do
-	 (dosync (ref-set last-name (str name)
+	 (dosync (ref-set last-name (str name)))
 	 (str "<h1>added middle-name" name "</h1>")))
   (GET "/show/" []
        (str "<h1>names</h1>"
