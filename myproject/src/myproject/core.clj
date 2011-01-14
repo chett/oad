@@ -2,29 +2,40 @@
   (:use compojure.core, ring.adapter.jetty)
   (:require [compojure.route :as route]))
 
-(def first-names (ref #{}))
 
-(def middle-names (ref #{}))
+(def first-names (ref #{"Estella" "Harper" "Alaina" "Estelle" "Greta" "Mira" "Ava" "Evelyn" "Eva" "Emmaline" "Sienna" "Makenna" "Laurel" "Adele" "Maya" "Isla" "Victoria"}))
 
-(def last-name "")
+(def middle-names (ref #{"Elizabeth"  "Madison"}))
+
+(def last-name (ref "Tobrey"))
 
 (defn contains-name? [n names]
   (some true? (map #(.equalsIgnoreCase % n) names)))
 
-;; (defn get-tbl-rows []
-;;   (str first-names middle-names last-name))
+(defn open-tag [tag]
+  "creates opening html tag"
+  (str "<" (.toLowerCase tag) ">"))
+
+(defn close-tag [tag]
+  "creates closing html tag",
+  (str "</" (.toLowerCase tag) ">"))
+
+(defn wrap-tag [val tag]
+  "wraps val in html tag"
+  (str (open-tag tag) val (close-tag tag)))
 
 (defn get-tbl-rows []
-  (let [result []]
-    (for [first [@first-names]]
-      (for [middle [conj @first-names @middle-names]]
-	(do (println first middle)
-	(set result (cons (wrap-tag (str first middle last-name) "tr") result)))))
-    result))
+  (for [middle (concat @first-names @middle-names)]
+    (for [first @first-names]
+       (str (wrap-tag (str
+		  (wrap-tag first "td")
+		  (wrap-tag middle "td")
+		  (wrap-tag @last-name "td"))
+		 "tr")))))
 
 (defn make-three-part-names []
   (str "<tr><th>first</th><th>middle</th><th>last</th></tr>"
-       (get-tbl-rows)))
+       (apply str (map #(apply str %)(get-tbl-rows)))))
 
 (defn make-name-table[]
   (wrap-tag (make-three-part-names) "table"))
@@ -55,17 +66,5 @@
 	    (make-name-table)))
   (ANY "*" []
        "page-not-found"))
-
-(defn open-tag [tag]
-  "creates opening html tag"
-  (str "<" (.toLowerCase tag) ">"))
-
-(defn close-tag [tag]
-  "creates closing html tag",
-  (str "</" (.toLowerCase tag) ">"))
-
-(defn wrap-tag [val tag]
-  "wraps val in html tag"
-  (str (open-tag tag) val (close-tag tag)))
 
 (run-jetty my-name-app {:port 8080})
