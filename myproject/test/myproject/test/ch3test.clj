@@ -11,3 +11,7 @@
 (deftest call-java-test
   (is (= java.util.Date 
 	 (.getClass (now)))))
+
+(deftest dot-dot-test
+  (is (= java.lang.String
+	 (.. (now) getTime toString getClass))))

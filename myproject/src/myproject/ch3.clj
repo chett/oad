@@ -8,3 +8,9 @@
 
 (defn now []
   (new Date))
+
+(defn pita []
+  (let [a (make-array String 3)]
+    (aset a 0 "Zero")
+    (aset a 1 "One")
+    (aset a 2 "Two")))
