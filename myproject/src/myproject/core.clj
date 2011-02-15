@@ -3,11 +3,17 @@
   (:require [compojure.route :as route]))
 
 
-(def first-names (ref #{"Estella" "Harper" "Alaina" "Estelle" "Greta" "Mira" "Ava" "Evelyn" "Eva" "Emmaline" "Sienna" "Makenna" "Laurel" "Adele" "Maya" "Isla" "Victoria"}))
+;;(def first-names (ref #{"Estella" "Harper" "Alaina" "Estelle" "Greta" "Mira" "Ava" "Evelyn" "Eva" "Emmaline" "Sienna" "Makenna" "Laurel" "Adele" "Maya" "Isla" "Victoria"}))
 
-(def middle-names (ref #{"Elizabeth"  "Madison"}))
+;;(def middle-names (ref #{"Elizabeth"  "Madison"}))
 
-(def last-name (ref "Tobrey"))
+;;(def last-name (ref "Tobrey"))
+
+(def first-names (ref #{}))
+
+(def middle-names (ref #{}))
+
+(def last-name (ref "Leach"))
 
 (defn contains-name? [n names]
   (some true? (map #(.equalsIgnoreCase % n) names)))
