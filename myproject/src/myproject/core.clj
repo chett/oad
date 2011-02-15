@@ -67,4 +67,5 @@
   (ANY "*" []
        "page-not-found"))
 
-(run-jetty my-name-app {:port 8080})
+(defn up []
+  (run-jetty my-name-app {:port 8080}))
