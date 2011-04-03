@@ -66,7 +66,7 @@
   (GET "/set/last/:name" [name]
        (do
 	 (dosync (ref-set last-name (str name)))
-	 (str "<h1>added middle-name" name "</h1>")))
+	 (str "<h1>added last-name" name "</h1>")))
   (GET "/show/" []
        (str "<h1>names</h1>"
 	    (make-name-table)))
@@ -74,4 +74,4 @@
        "page-not-found"))
 
 (defn up []
-  (run-jetty my-name-app {:port 8080}))
+  (run-jetty #'my-name-app {:port 8080 :join? false}))
