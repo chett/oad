@@ -3,17 +3,39 @@
   (:require [compojure.route :as route]))
 
 
+(def service-url "http://chett.xen.prgmr.com:8080/")
+
+(def show-url "show/")
+
+(def add-url "add/")
+
+(def remove-url "remove/")
+
+(def first-url "first/")
+
+(def middle-url "middle/")
+
+(def last-url "last/")
+
+(def set-url "set/")
+
+(defn make-name-url [name add? first-name?]
+  (if first-name?
+    (str service-url add-url first-url name)
+    (str service-url add-url middle-url name)))
+
+(defn make-set-url [name]
+  (str service-url set-url last-url name))
+    
 ;;(def first-names (ref #{"Estella" "Harper" "Alaina" "Estelle" "Greta" "Mira" "Ava" "Evelyn" "Eva" "Emmaline" "Sienna" "Makenna" "Laurel" "Adele" "Maya" "Isla" "Victoria"}))
 
 ;;(def middle-names (ref #{"Elizabeth"  "Madison"}))
-
-;;(def last-name (ref "Tobrey"))
 
 (def first-names (ref #{}))
 
 (def middle-names (ref #{}))
 
-(def last-name (ref "Leach"))
+(def last-name (ref "Tobrey"))
 
 (defn contains-name? [n names]
   (some true? (map #(.equalsIgnoreCase % n) names)))
