@@ -29,3 +29,7 @@
 (deftest make-remove-url-test
   (is (.equals (make-name-url "wally" false false)
 	       "http://chett.xen.prgmr.com:8080/remove/middle/wally")))
+
+(deftest make-href-test
+  (is (.equals (make-href "http://localhost:8080" "test")
+	       "<a href=\"http://localhost:8080\">test</a>")))
