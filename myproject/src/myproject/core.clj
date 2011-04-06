@@ -20,9 +20,14 @@
 (def set-url "set/")
 
 (defn make-name-url [name add? first-name?]
-  (if first-name?
-    (str service-url add-url first-url name)
-    (str service-url add-url middle-url name)))
+  (if add?
+    (if first-name?
+      (str service-url add-url first-url name)
+      (str service-url add-url middle-url name))
+    (if first-name?
+      (str service-url remove-url first-url name)
+      (str service-url remove-url middle-url name))))
+    
 
 (defn make-set-url [name]
   (str service-url set-url last-url name))
