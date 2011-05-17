@@ -20,9 +20,10 @@
   (is (= "asdf"
 	 (aget (into-array String ["asd" "asdf"])
 	       1))))
+
 (deftest amap-test
   (is (=
        (first (let [sa (into-array ["some" "string" "here"])
-		   sa2 (seq (amap sa idx _ (.toUpperCase (aget sa idx))))]
-	       sa2))
-	 "SOME")))
+		    sa2 (seq (amap sa idx _ (.toUpperCase (aget sa idx))))]
+		sa2))
+       "SOME")))
